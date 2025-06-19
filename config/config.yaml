@@ -1,0 +1,65 @@
+# Main Configuration File
+project:
+  name: leafandloaf-ai
+  version: 0.1.0
+  environment: development
+
+# Model Configuration
+models:
+  frequently_bought:
+    name: "temporal_matrix_factorization_plus"
+    embedding_dim: 128
+    temporal_decay: 0.95
+    negative_sampling_ratio: 4
+    learning_rate: 0.001
+    epochs: 50
+    batch_size: 128
+    
+  discovery:
+    name: "bert4rec_plus_ucb"
+    sequence_length: 50
+    hidden_size: 256
+    num_attention_heads: 8
+    num_hidden_layers: 4
+    dropout_prob: 0.1
+    exploration_rate: 0.2
+    
+  seasonal:
+    name: "neural_prophet_enhanced"
+    seasonality_mode: "multiplicative"
+    yearly_seasonality: true
+    weekly_seasonality: true
+    holidays: true
+    changepoint_prior_scale: 0.05
+
+# Training Configuration
+training:
+  data_split:
+    train: 0.8
+    validation: 0.1
+    test: 0.1
+  random_seed: 42
+  use_gpu: false
+  num_workers: 4
+
+# Inference Configuration  
+inference:
+  max_recommendations: 10
+  min_confidence_score: 0.3
+  cache_ttl_seconds: 3600
+  batch_timeout_ms: 50
+
+  goes_well_with:
+    name: "dual_graph_attention_transformer"
+    embedding_dim: 128
+    n_heads: 8
+    n_layers: 3
+    learning_rate: 0.001
+    epochs: 30
+    batch_size: 32
+
+# Performance Targets
+performance:
+  max_latency_ms: 300
+  min_precision: 0.85
+  min_discovery_engagement: 0.40

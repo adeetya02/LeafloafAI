@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Data
+data/processed/
+data/raw/*.csv
+!data/raw/baldor_products.csv
+*.pkl
+*.npy
+*.h5
+
+# Models
+models/saved/
+*.pt
+*.pth
+*.onnx
+*.pb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Credentials
+*.json
+!config/*.json
+.env
+secrets/
+
+# Logs
+logs/
+*.log
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# GCP
+.gcloudignore

@@ -1,0 +1,47 @@
+# Pricing Rules Configuration
+pricing:
+  # Base markup by category
+  category_markups:
+    default: 1.25
+    produce: 1.30
+    dairy: 1.28
+    meat: 1.35
+    seafood: 1.40
+    bakery: 1.45
+    frozen: 1.20
+    canned: 1.15
+    beverages: 1.22
+    snacks: 1.30
+    
+  # Attribute-based adjustments
+  attribute_markups:
+    organic: 1.05      # 5% additional on organic
+    gluten_free: 1.08  # 8% additional on gluten-free
+    premium: 1.10      # 10% additional on premium
+    local: 1.03        # 3% additional on local
+    imported: 1.12     # 12% additional on imported
+    
+  # Size-based adjustments  
+  size_markups:
+    bulk: 0.95         # 5% discount on bulk
+    family_size: 0.97  # 3% discount on family size
+    single_serve: 1.05 # 5% premium on single serve
+    
+  # Freshness-based adjustments
+  perishability_markups:
+    high: 1.15         # Very perishable (1-2 days)
+    medium: 1.10       # Moderate (3-7 days)
+    low: 1.00          # Long shelf life
+    
+  # Rounding rules
+  rounding:
+    strategy: "psychological"  # .99 or .49 endings
+    thresholds:
+      - max: 1.00
+        round_to: 0.99
+      - max: 5.00
+        round_to: 0.49
+      - max: 10.00
+        round_to: 0.99
+      - max: 999999
+        round_to: 0.99

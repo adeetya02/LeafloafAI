@@ -1,0 +1,50 @@
+# GCP Configuration
+gcp:
+  project_id: ${GCP_PROJECT_ID}  # Set via environment variable
+  region: us-central1
+  zone: us-central1-a
+
+# Storage Configuration
+storage:
+  buckets:
+    data: ${GCP_PROJECT_ID}-ml-data
+    models: ${GCP_PROJECT_ID}-ml-models
+    artifacts: ${GCP_PROJECT_ID}-ml-artifacts
+  
+  paths:
+    raw_data: data/raw/
+    processed_data: data/processed/
+    trained_models: models/trained/
+    model_artifacts: models/artifacts/
+
+# Vertex AI Configuration
+vertex_ai:
+  training:
+    machine_type: n1-highmem-8  # 8 vCPUs, 52GB RAM
+    accelerator_type: null      # CPU only
+    accelerator_count: 0
+    python_version: "3.9"
+    training_image: "us-docker.pkg.dev/vertex-ai/training/pytorch-cpu.2-0:latest"
+    
+  serving:
+    machine_type: n1-standard-4  # 4 vCPUs, 15GB RAM
+    min_replica_count: 1
+    max_replica_count: 3
+    traffic_split: 100
+    
+# BigQuery Configuration
+bigquery:
+  dataset_id: leafandloaf_ml
+  tables:
+    user_interactions: user_interactions
+    product_catalog: product_catalog
+    training_data: training_data
+    predictions: predictions
+    
+# Cloud Run Configuration (for later API deployment)
+cloud_run:
+  service_name: leafandloaf-recommendations
+  memory: 2Gi
+  cpu: 2
+  max_instances: 10
+  min_instances: 1
